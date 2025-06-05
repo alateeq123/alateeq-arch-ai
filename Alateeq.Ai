@@ -1,0 +1,90 @@
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return """
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <title>واحة العتيق الذكية - Alateeq Arch Ai</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f2f2f2;
+                text-align: center;
+                direction: rtl;
+            }
+            header {
+                background-color: #4A148C;
+                color: white;
+                padding: 40px 20px;
+            }
+            h1 {
+                margin: 0;
+                font-size: 2.5em;
+            }
+            p {
+                font-size: 1.2em;
+                color: #555;
+            }
+            section {
+                margin: 40px auto;
+                max-width: 800px;
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            footer {
+                margin-top: 50px;
+                padding: 20px;
+                background-color: #eee;
+                color: #888;
+                font-size: 0.9em;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>واحة العتيق الذكية</h1>
+            <p>المنصة المعمارية المدعومة بالذكاء الاصطناعي</p>
+        </header>
+
+        <section>
+            <h2>من نحن</h2>
+            <p>نقدم حلولاً هندسية ذكية تساعد المعماريين والمهندسين على تصميم وتحليل وتقديم مشاريعهم بكفاءة عالية باستخدام أدوات الذكاء الاصطناعي.</p>
+        </section>
+
+        <section>
+            <h2>خدمات المنصة</h2>
+            <ul style="text-align:right; direction:rtl; line-height:2;">
+                <li>رندر معماري فوري</li>
+                <li>تحسين الصور المعمارية</li>
+                <li>إعداد الشوب دروينق</li>
+                <li>توليد أفكار تصميمية بالذكاء الاصطناعي</li>
+            </ul>
+        </section>
+
+        <footer>
+            &copy; 2025 واحة العتيق الذكية - Alateeq Arch Ai
+        </footer>
+    </body>
+    </html>
+    """
+
+if __name__ == "__main__":
+    app.run()
+flask
+gunicorn
+services:
+  - type: web
+    name: alateeq-arch-ai
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn app:app
